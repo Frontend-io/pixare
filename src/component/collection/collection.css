@@ -1,0 +1,90 @@
+.collections{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap
+}
+.content-head{
+    position: sticky;
+    top: 50px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding: 10px 20px !important;
+    background: #fff;
+}
+.collections .action-tab{
+    width: 23%;
+    min-width: 220px;
+    background: #f2f2f2;
+    border-right: 1px solid #eee;
+    position: fixed;
+    top: 128px;
+    left: 0px;
+    height: 100vh;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.collections .action-tab .title{
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+.collections .action-tab .title label{
+    font-size: 20px;
+}
+.collections .action-tab .specimen{
+    display: flex;
+    max-height: 350px;
+}
+.collections .action-tab img{
+    border-radius: 5px;
+    margin: 5px auto;
+    object-fit: contain
+}
+.collections .action-tab .action{
+    margin-top: 5px;
+}
+.collections .action-tab .action button:first-child{
+    padding: 10px 20px;
+    border: 2px solid #222
+}
+.collections .action-tab .action button:last-child{
+    padding: 10px 20px;
+    border: 2px solid #222;
+    background:#222;
+    margin-top: 5px;
+    color: #eee
+}
+.collections .action-tab .action button:hover{
+    opacity: .9;
+    transition: opacity .3s;
+}
+.collections .collection-content{
+    width: 75%;
+    column-count: 3
+}
+
+
+@media(max-width: 1050px){
+    .collections .collection-content{
+        column-count: 2;
+        width: 73%
+    }
+}
+@media(max-width: 800px){
+    .collections{
+        padding: 20px;
+    }
+    .collections .action-tab{
+        display: none;
+        background: #fff;
+        margin-top: 50px;
+        position: relative !important;
+        top:0px;
+        left: 0px;
+        width: 100%;
+        order: 2
+    }
+    .collections .collection-content{
+        column-count: 2;
+        width: 103%
+    }
+}

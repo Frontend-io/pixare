@@ -1,0 +1,52 @@
+.landing{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 180px 20px 50px 20px;
+    color: #ffffff;
+    /* min-height: 20vh; */
+}
+.landing .intro h2{
+    font-size: 30px;
+
+}
+.landing .intro span{
+    font-size: 18px
+}
+.landing .search-form{
+    margin-top: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+.landing .search-form input{
+    padding: 20px 10px;
+    padding-right: 45px;
+    border-radius: 0px !important;
+    font-size: 18px;
+    border: 1px solid transparent;
+    background: #ffffff
+}
+.landing .search-form i{
+    right: 5px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10px
+}
+.landing .search-form i:hover{
+    color: #222
+}
+
+
+
+
+@media(max-width: 768px){
+   .landing{
+       padding: 100px 20px;
+   }
+   .landing .search-form input{
+      padding: 15px 20px;
+      padding-right: 45px;
+   }
+
+}

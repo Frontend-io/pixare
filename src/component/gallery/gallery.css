@@ -1,0 +1,29 @@
+/* GALLERY CONTAINER */
+.gallery .wrapper{
+    column-count: 4;
+    column-gap: 10;
+    column-width: 200;
+    padding: 20px 0px;
+    min-height: 500px;
+}
+
+@media(max-width: 1000px){
+    /* GALLERY CONTAINER */
+    .gallery .wrapper{
+        column-count: 3;
+    }
+}
+
+
+@media(max-width: 768px){
+    /* GALLERY CONTAINER */
+    .gallery .wrapper{
+        column-count: 2;
+    }
+}
+@media(max-width: 500px){
+    /* GALLERY CONTAINER */
+    .gallery .wrapper{
+        column-count: 1;
+    }
+}

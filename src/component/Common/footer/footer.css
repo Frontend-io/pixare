@@ -1,0 +1,19 @@
+footer{
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+footer.halve {
+    width: 75% !important;
+    float: right;   
+}
+
+@media(max-width: 768px){
+    footer.halve {
+        width: 100% !important;
+        float: none;   
+    }
+}
