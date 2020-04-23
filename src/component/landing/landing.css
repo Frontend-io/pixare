@@ -4,10 +4,11 @@
     align-items: center;
     padding: 180px 20px 50px 20px;
     color: #ffffff;
-    /* min-height: 20vh; */
+    min-height: 30vh
 }
 .landing .intro h2{
     font-size: 30px;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.1)
 
 }
 .landing .intro span{

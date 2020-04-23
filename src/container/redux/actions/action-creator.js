@@ -25,9 +25,10 @@ export const removeFav = (payload)=>{
     }
 }
 
-export const fetchPhotoBegin = ()=>{
+export const fetchPhotoBegin = (payload)=>{
     return{
-        type: actions.FETCH_PHOTO_BEGIN
+        type: actions.FETCH_PHOTO_BEGIN,
+        payload
     }
 }
 
@@ -49,7 +50,7 @@ export const fetchPhotoFailure = (payload)=>{
 
 export const fetchPhoto = (query)=>{
    return(dispatch)=>{
-        dispatch(fetchPhotoBegin())
+        dispatch(fetchPhotoBegin(query))
         // AXIOS
         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
         const QUERY = query ? query : "nature"

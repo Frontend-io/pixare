@@ -6,7 +6,8 @@ const initialState = {
     photos: null,
     favPhotos: [],
     downloaded: [],
-    favPreview : null
+    favPreview : null,
+    category: ''
 }
 
 const photoReducer = ( state = initialState, action )=>{
@@ -17,7 +18,9 @@ const photoReducer = ( state = initialState, action )=>{
             return{
                 ...state,
                 loading: true,
-                message: ""
+                message: "",
+                category: payload
+
             }
         case actions.FETCH_PHOTO_SUCCESS:
             return{

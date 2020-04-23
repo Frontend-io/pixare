@@ -5,23 +5,7 @@ header {
     text-align: center;
     background: var(--secondary-color);
 }
-header .logo {
-    color: #fff;
-}
-header .logo h2{
-    height: 30px;
-    width: 30px;
-    background: var(--primary-color);
-    text-align: center;
-    box-sizing: border-box;
-    padding: 1px 0px 0px 2px; 
-}
-header .logo{
-    justify-content: center
-}
-header .logo span {
-    padding-left: 2px;
-}
+
 
 
 

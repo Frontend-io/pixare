@@ -20,6 +20,10 @@
     .gallery .wrapper{
         column-count: 2;
     }
+    .gallery .topbar{
+        justify-content: space-between !important;
+        padding: 10px 20px
+    }
 }
 @media(max-width: 500px){
     /* GALLERY CONTAINER */

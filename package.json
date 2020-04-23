@@ -1,10 +1,14 @@
 {
   "name": "pixare",
   "version": "1.0.0",
+  "homepage": "http://frontend-io.github.io/pixare",
   "description": "",
   "main": "script.js",
   "scripts": {
-    "it": "webpack-dev-server --hot"
+    "it": "webpack-dev-server --hot",
+    "build": "webpack-dev-server --hot",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "jefferson",
   "license": "ISC",
@@ -25,6 +29,7 @@
     "axios": "^0.19.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-stage-2": "^6.24.1",
+    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",

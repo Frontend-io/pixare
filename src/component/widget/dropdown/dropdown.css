@@ -1,0 +1,55 @@
+.drop-down{
+    position: relative;
+    display: flex;
+}
+.drop-down button{
+    margin-left: 0px !important;
+    border-radius: 0px !important;
+    text-transform: capitalize
+}
+
+.drop-down .content{
+    visibility: hidden;
+    font-size: 16px;
+    opacity: 0;
+    background: #fff;
+    position: absolute;
+    min-width: 200px;
+    min-height: 0px;
+    left: 0px;
+    top: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 99;
+    box-shadow: 0px 5px 10px rgba(0,0,0,.08);
+    border: 1px solid #ddd;
+    z-index: 99;
+    transition: all .3s;
+    padding: 0px;
+    transform: rotateX(120deg)
+}
+.drop-down.visible .content{
+    visibility: visible;
+    opacity: 1;
+    top: 50px;
+    transition: all .4s;
+    transform: rotateX(0deg);
+}
+/* FOR LIST CONTENTS */
+.drop-down .content.paragraph{
+    padding:  0px 10px;
+}
+.drop-down .content.list {
+    display: flex;
+    flex-direction: column;
+}
+.drop-down .content.list > *{
+    border-bottom: 1.2px solid #ddd;
+    padding: 10px 15px;
+}
+.drop-down .content.list > *:last-child{
+    border: none
+}
+.drop-down .content.list > *:hover{
+    background: #eee;
+}
