@@ -3,7 +3,7 @@ import * as actions from "../actions/action"
 const initialState = {
     loading: false,
     message: "",
-    photos: [],
+    photos: null,
     favPhotos: [],
     downloaded: [],
     favPreview : null
@@ -24,7 +24,7 @@ const photoReducer = ( state = initialState, action )=>{
                 ...state,
                 loading: false,
                 message: '',
-                photos: [payload],
+                photos: payload.photos,
             }
         case actions.FETCH_PHOTO_FAILURE:
             return{

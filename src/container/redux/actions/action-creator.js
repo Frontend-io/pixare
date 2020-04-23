@@ -1,4 +1,5 @@
 import * as actions from "./action"
+import axios from "axios";
 
 
 export const addFav = (payload)=>{
@@ -33,7 +34,7 @@ export const fetchPhotoBegin = ()=>{
 export const fetchPhotoSuccess = (payload)=>{
     return{
         type: actions.FETCH_PHOTO_SUCCESS,
-        payload
+        payload: payload
     }
 }
 
@@ -41,13 +42,31 @@ export const fetchPhotoSuccess = (payload)=>{
 export const fetchPhotoFailure = (payload)=>{
     return{
         type: actions.FETCH_PHOTO_FAILURE,
-        payload
+        payload: payload
     }
 }
 
 
-export const fetchPhoto = (dispatch)=>{
-    dispatch(fetchPhotoBegin())
-    // AXIOS
-    
+export const fetchPhoto = (query)=>{
+   return(dispatch)=>{
+        dispatch(fetchPhotoBegin())
+        // AXIOS
+        const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
+        const QUERY = query ? query : "nature"
+        const URL = `https://api.pexels.com/v1/search?query=${QUERY}&per_page=70&page=1`
+        axios
+        .get(URL, {
+            headers: {
+                'Authorization': `${KEY}`
+            }
+        })
+        .then(res => {
+            const data = res.data
+            dispatch(fetchPhotoSuccess(data))
+        })
+        .catch(err =>{
+            const error = err.message
+            dispatch(fetchPhotoFailure(error))
+        })
+   }
 }

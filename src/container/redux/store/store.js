@@ -1,11 +1,13 @@
-import { applyMiddleware } from "redux"
-import { Logger } from "redux-logger"
+import { createStore, applyMiddleware, combineReducers } from "redux"
+import Logger  from "redux-logger"
 import  thunk  from 'redux-thunk'
-import { createStore } from 'redux'
 import photoReducer from "../reducer/reducer";
 
-const store = createStore(photoReducer, applyMiddleware({
+// const rootReducer = combineReducers({
+//     photo: photoReducer
+// })
+const store = createStore(photoReducer, applyMiddleware(
     Logger, thunk
-}))
+))
 
 export default store

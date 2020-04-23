@@ -10,7 +10,7 @@ const RouterMain = ()=>(
     <React.Fragment>
          <Switch>
             <Route exact path="/home" component={ Home } />
-            <Route exact path="/view" component={ View } />
+            <Route exact path="/view/:id" component={ View } />
             <Route exact path="/collections" component={ Collections } />
             <Redirect from="/" exact to="/home" component={ Home } />
             <Redirect from="*" exact to="/" component={ Home } />
