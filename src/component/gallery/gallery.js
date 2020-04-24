@@ -19,9 +19,11 @@ export const Void = ()=>{
 }
 const Topbar = (props)=>{
    
-    const { dispatch, state: { photo : {category} } } = props
+    const { state: { photo : {category} } } = props
     const wrapper = {
         borderBottom: "1px solid #eee",
+        position: 'sticky',
+        top: 0, 
         color: "#555",
         background: "#fff",
         fontSize: "1.5em"
@@ -31,7 +33,8 @@ const Topbar = (props)=>{
         { title: 'Trending', value: 'trending' },
         { title: 'Nature', value: 'nature' },
         { title: 'Artificial Intelligence', value: 'ai' },
-        { title: 'Science', value: 'science' }
+        { title: 'Science', value: 'science' },
+        { title: 'Sport', value: 'sport' }
     ]
 
 
@@ -39,14 +42,14 @@ const Topbar = (props)=>{
     return(
         <div style={wrapper} className="padded-10 grid grey-t around align-c topbar">
             <span className="black-t " style={{textTransform: "capitalize"}}>{category} photos</span>
-            <Dropdown dispatch={dispatch} type="list" data={categories} />
+            <Dropdown {...props} type="list" data={categories} />
         </div>
     )
 }
 
 
 const Gallery = (props)=>{
-    const { isLoading, message, photo} = props.state
+   const { isLoading, photo} = props.state
    const { photos } = photo
    
     
@@ -62,6 +65,7 @@ const Gallery = (props)=>{
                                     photos.map( (photo, index) =>{
                                         const { id, photographer, src:{portrait}, liked } = photo
                                        return(
+                                        // SIMULATE MANSORY LAYOUT BY VARYING HEIGHT
                                            index % 2 == 0 ?
                                             <Photo id={id} author={photographer} image={portrait} liked={liked} key={id}/>
                                             :
@@ -79,5 +83,6 @@ const Gallery = (props)=>{
     )
     
 }
+
 
 export default Gallery

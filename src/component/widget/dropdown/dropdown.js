@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'
 import "./dropdown.css"
 import PropTypes from 'prop-types';
 import randID from '../../../utilities/randID';
@@ -26,13 +26,13 @@ const Dropdown = (props)=>{
         const value = e.target.getAttribute('data-value')
         setCategory(value)
         setVisible(false)
+        
+        // DISPATCH AND FETCH NEW CATEGORY
+        dispatch(fetchPhoto(value))
     }
-    // FETCH NEW CONTENT ON THE CATEGORY SELECTED
-    useEffect(()=>{
-        dispatch(fetchPhoto(category))
-    }, [category])
-
     
+    
+
     return(
         <div className={classes}>
             <input value={category} type="hidden"  />
@@ -62,5 +62,7 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
     type : "list"
 }
+
+
 
 export default Dropdown

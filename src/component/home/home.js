@@ -9,8 +9,6 @@ import SearchResult from '../search-result/search-result';
 
 const Home = (props)=>{
     const { dispatch, state: {search : { isSearching} } } = props
-    console.log(isSearching)
-    
 
     useEffect(()=>{
         dispatch(fetchPhoto('Trending'))
@@ -19,12 +17,12 @@ const Home = (props)=>{
     
     return(
        <React.Fragment>
-            <Landing {...props}/>
+            <Landing {...props} />
             {
                 isSearching &&
                 <SearchResult {...props} />
             }
-            <Gallery {...props}/>
+            <Gallery {...props} />
        </React.Fragment>
     )
 }

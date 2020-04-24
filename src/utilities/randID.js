@@ -45,7 +45,7 @@ export default function randID(){
     }
 }
 
-// RETURN RANDOM LANDSCAPE OF IMAGE
+// RETURN RANDOM LANDSCAPE IMAGE FOR LANDING
 export function randNum(array){
     if( array !== null ){
         const randNum = Math.floor(Math.random() * array.length)

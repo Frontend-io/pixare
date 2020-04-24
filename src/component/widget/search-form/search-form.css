@@ -1,0 +1,31 @@
+.landing .search-form{
+    margin-top: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+.landing .search-form input{
+    padding: 20px 10px;
+    padding-right: 45px;
+    border-radius: 0px !important;
+    font-size: 18px;
+    border: 1px solid transparent;
+    background: #ffffff
+}
+.landing .search-form i{
+    right: 5px;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10px
+}
+.landing .search-form i:hover{
+    color: #222
+}
+
+
+@media(max-width: 768px){
+    .landing .search-form input{
+        padding: 15px 20px;
+        padding-right: 45px;
+     }
+}
