@@ -35,32 +35,25 @@ export const searching = (query, perPage)=>{
     return(dispatch)=>{
          dispatch(searchingBegin())
 
-         let cancel;
-         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
-         axios({
-             method: 'GET',
-             url : ' https://api.pexels.com/v1/search',
-             params:{
-                 query: query,
-                 per_pagge: perPage,
-                 page: 1
-             },
-             headers: {
-                 Authorization: KEY
-             },
-             cancelToken: new axios.CancelToken( c => cancel = c)
-         })
+         // AXIOS
+        const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
+        const URL = `https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}&page=1`
+        axios
+        .get(URL, {
+            headers: {
+                'Authorization': `${KEY}`
+            }
+        })
          .then(res => {
              const data = res.data
+             console.log(data)
              dispatch(searchSuccess(data))
          })
          .catch(err =>{
              const error = err.message
-             console.log(err)
+             console.log(err.message)
              dispatch(searchFailure(error))
          })
-
-         return cancel()
     }
  }
  

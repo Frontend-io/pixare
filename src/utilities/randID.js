@@ -49,9 +49,10 @@ export default function randID(){
 export function randNum(array){
     if( array !== null ){
         const randNum = Math.floor(Math.random() * array.length)
-        return (
-            array[randNum].src.landscape
-         )
+        return {
+            image: array[randNum].src.landscape,
+            author: `Photographer - ${array[randNum].photographer}`
+        }
     }
     return null
 }

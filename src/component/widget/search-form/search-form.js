@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './search-form.css'
-import { searchingBegin, searchingEnd } from '../../../container/redux/actions/search-action-creator';
+import { searchingBegin, searchingEnd, searching } from '../../../container/redux/actions/search-action-creator';
 
 
 const SearchForm = (props)=>{
@@ -14,14 +14,14 @@ const SearchForm = (props)=>{
 
     useEffect(()=>{
         searchTerm.length > 0 ?
-            dispatch(searchingBegin())
+            dispatch(searching(searchTerm, 10))
         :
             dispatch(searchingEnd())
     }, [searchTerm])
     
 
 
-    
+
     return(
         <form> 
             <div className=" relative no-wrap align-c grid field">

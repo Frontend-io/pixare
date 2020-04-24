@@ -5,19 +5,26 @@ import SearchForm from '../widget/search-form/search-form';
 
 
 const Landing = (props)=>{
-    const [ready, setReady] = useState('')
+    const [imageDetail, setImageDetail] = useState({
+        background: '',
+        author: ''
+    })
 
     const { state: { photo : {photos} } } = props
-    let randomBackground = randNum(photos)
+
+    const { image, author } = randNum(photos) !== null ? randNum(photos) : '' 
     useEffect(()=>{
-        setReady(randomBackground)
+        setImageDetail({
+            background: image,
+            author
+        })
     }, [photos])
 
     
     
     
     const landingImage = {
-        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, .08), rgba(0, 0, 0, .3)),url(${ready})`,
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .3)),url(${imageDetail.background})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center"
@@ -30,6 +37,7 @@ const Landing = (props)=>{
             </div>
             <div className="search-form">   
                 <SearchForm {...props} />
+                <p className='grid align-c centered'><b> {imageDetail.author}</b></p>
             </div>
         </div>
     )
