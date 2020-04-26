@@ -17,6 +17,9 @@
     min-width: 130px;
     text-transform: uppercase;
 }
+.view .view-detail span{
+    text-transform: capitalize;
+}
 .view .container.fullscreen{
     display: flex;
     justify-content: center;
@@ -60,8 +63,6 @@
     /* TOP BAR DETAILS */
     .view .view-detail{
         padding: 5px 5px;
-        /* position: relative;
-        top: 0px; */
     }
     .view .view-detail{
         font-size: 14px;

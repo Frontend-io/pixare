@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./collection.css"
 import { connect } from 'react-redux'
-import { img } from '../view-image/view';
 import Void from '../widget/void-content/void';
 import Related from '../widget/related-images/related-image';
 import { emptyFav, addFav } from '../../container/redux/actions/photo-action/photo-action-creator';
+import parseTitle from '../../utilities/parseTitle';
 
 const Collections = (props)=>{
     const { dispatch, state: { photo: { message, favPhotos } } } = props
-    const { id, photographer, url, src:{portrait} }  = favPhotos[0]
-    const title = url.split("/")[4].split('-').join(' ')
+    const  { photographer, url, src } = favPhotos[0] || {}
+    const {  portrait, original } = src || {}
+    const title = parseTitle(url) || ''
+    
+ 
     
     // Empty fav list
     const clearFav = (e)=>{
@@ -19,12 +22,15 @@ const Collections = (props)=>{
             dispatch(emptyFav())
         }, 1000)
     }
-    const handleRemove = ()=>{
-        dispatch(addFav(id))
+    const handleEvent = (e)=>{
+        const name = e.target.getAttribute('data-type')
+        name === 'removeFav' && dispatch(addFav(favPhotos[0]))        
     }
+    // DOWNLOADING IMAGES
+
+
     
-    
-    
+
 
 
     return(
@@ -48,19 +54,21 @@ const Collections = (props)=>{
                     <div className="collections">
                         <div className="action-tab">
                            {
-                               favPhotos.length &&
+                               favPhotos.length ?
                                <React.Fragment>
                                    <div className="grey-t title">
-                                        <label>{title} by <b className='blue-t'>{photographer}</b> </label> 
+                                       <h4>Last added photo- </h4>
+                                        <label className='title-inner'>{title} by <b className='blue-t'>{photographer}</b> </label> 
                                     </div>
                                     <div className="specimen">
-                                        <img src={portrait} alt={title} />
+                                        <img src={portrait} alt={portrait} />
                                     </div>
                                     <div className="action">
-                                        <button onClick={handleRemove} className="full-width">Remove favourite</button>
-                                        <button className="full-width">Download</button>
+                                        <button onClick={handleEvent} data-type='removeFav' className="full-width">Remove favourite</button>
+                                        <a href={original.toString()} download={title} > <button name='download' className="full-width">Download</button></a>
                                     </div>
                                </React.Fragment>
+                               : <p className='grey-t centered-text'>No recent photo</p>
                            }
                         </div>
                         <div className={`collection-content ${favPhotos.length ? 'column' : ''}`}>

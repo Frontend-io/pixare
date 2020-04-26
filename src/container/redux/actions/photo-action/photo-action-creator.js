@@ -71,3 +71,37 @@ export const fetchPhoto = (query, perPage)=>{
         })
    }
 }
+
+
+const searchFound = (payload)=>{
+    return{
+        type: actions.SEARCH_FOUND,
+        payload
+    }
+}
+
+
+export const searchPhoto = (id)=>{
+
+    return(dispatch)=>{
+
+         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
+         const URL = `https://api.pexels.com/v1/photos/${id}`
+         axios
+         .get(URL, {
+             headers: {
+                 'Authorization': `${KEY}`
+             }
+         })
+         .then(res => {
+            const data = res.data
+            dispatch(searchFound(data))
+         })
+         .catch(err =>{
+            const error = err.message
+            console.log(error) 
+         })
+    }
+ }
+
+

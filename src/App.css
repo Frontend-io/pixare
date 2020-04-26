@@ -18,13 +18,13 @@ button{
 .photo:hover .photo-head{
   visibility: visible;
   opacity: 1;
-  transition:  visibility, opacity .3s;
+  transition:  opacity .3s;
 }
 .photo .photo-head{
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  transition: visibility, opacity .5s;
+  transition: opacity .5s;
   background: transparent;
   width: 95%;
   bottom: 0px;
@@ -57,3 +57,4 @@ button{
       transform: scale(1.5)
   }
 }
+

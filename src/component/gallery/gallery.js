@@ -5,7 +5,7 @@ import Photo from '../widget/photo/photo';
 import Void from '../widget/void-content/void';
 import randID from '../../utilities/randID';
 import Loader from '../widget/loader/loader';
-import findFav from '../../utilities/favoritePhotoFinder';
+
 
 const Topbar = (props)=>{
    
@@ -39,16 +39,16 @@ const Topbar = (props)=>{
 
 
 const Gallery = (props)=>{
-   const { state: { photo: { loading, photos } } } = props
+   const { state: { photo: { loading, photos, message } } } = props
+      
    
    
-
 
     return(
         <div className="gallery">
             <Topbar {...props}/>
                 {
-                    photos && !loading  && 
+                    photos && loading === false &&
                     <div className="container">
                         <div className='wrapper'>
                             {
@@ -59,10 +59,13 @@ const Gallery = (props)=>{
                                 })
                             }
                         </div>
-                    </div>
+                    </div>                 
                 }
                 {
-                    loading && <Loader />
+                    loading === true && <Loader black='true' />
+                }
+                {
+                    !photos && loading === false && <Void error={message} />
                 }
                 
         </div>

@@ -8,7 +8,7 @@ import SearchResult from '../search-result/search-result';
 
 
 const Home = (props)=>{
-    const { dispatch, state:{ photo: { photos } } } = props
+    const { dispatch, state:{ photo: { photos, loading } } } = props
     useEffect(()=>{
         dispatch(fetchPhoto('Trending'))
     }, [])

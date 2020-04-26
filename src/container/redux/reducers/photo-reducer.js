@@ -37,16 +37,14 @@ const photoReducer = ( state = initialState, action )=>{
                 ...state,
                 loading: false,
                 message: payload,
-                photos: []
+                photos: null
             }
         case actions.ADD_FAV:
             return{
                 ...state,
                 favPhotos: !findFav(state.favPhotos, payload) ? 
                     [ payload, ...state.favPhotos ] :
-                    state.favPhotos.filter( p => payload !== p )
-
-                            
+                    state.favPhotos.filter( p => payload !== p )               
             }
         case actions.EMPTY_FAV:
             return{
@@ -63,6 +61,12 @@ const photoReducer = ( state = initialState, action )=>{
                 ...state,
                 favPreview: payload
             }
+        case actions.SEARCH_FOUND:
+            return{
+                ...state,
+                favPreview: payload
+            }
+
         default: 
             return state
     }

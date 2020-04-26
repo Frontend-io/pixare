@@ -19,9 +19,6 @@
 .view .related .related-head span{
     white-space: nowrap;
 }
-.view .related .related-content{
-    column-count: 3 ;
-}
 .view .related .related-content .photo{
     max-width: 280px !important;
 }
@@ -44,17 +41,11 @@
     .view .related {
         width: 50%
     }
-    .view .related .related-content{
-        column-count: 2 ;
-    }
 }
 
 @media(max-width: 768px){
     .view .related {
         width: 45%
-    }
-    .view .related .related-content{
-        column-count: 1 ;
     }
 }
 
@@ -71,9 +62,6 @@
     }
     .view .related .related-head{
         margin: 50px 0px 20px 0px;
-    }
-    .view .related .related-content{
-        column-count: 1 ;
     }
     .view .related .related-content .photo{
         max-width: 100% !important;

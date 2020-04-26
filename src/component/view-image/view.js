@@ -2,31 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import "./view.css"
 import Void from '../widget/void-content/void';
-import { fetchPhoto } from '../../container/redux/actions/photo-action/photo-action-creator';
+import { fetchPhoto, searchPhoto } from '../../container/redux/actions/photo-action/photo-action-creator';
 import Related from '../widget/related-images/related-image';
+import parseTitle from '../../utilities/parseTitle';
+import findFav from '../../utilities/favoritePhotoFinder';
 
 
-
-
-export const img = "https://i.pinimg.com/originals/42/2b/8c/422b8ca6e34541b58c75dd1d8431e872.jpg"
 
 const View = (props)=>{
-    const { dispatch, state: { photo: { message, photos } } } = props
-
+    const { dispatch, state: { photo: { message, photos, favPhotos, favPreview } }, match: {params : {id :currentImage }} } = props
+    const { photographer, url, src } = favPreview || {}
+    const { portrait } = src || {}
+    const isFav = findFav(favPhotos, favPreview)
+    
+    const title = parseTitle(url)
     const [ fullView, setFullView ] = useState(false)
+
     // Toggle full view
     const toggleView = ()=>{
         fullView ? setFullView(false) : setFullView(true)
     }
     const view = fullView ? "fullscreen" : "";
     const icon = fullView ? "fullscreen_exit" : "fullscreen"
+    const favStatus = !isFav ? 'red-t favorite' : 'favorite_border'
+    console.log(!isFav)
 
 
 
     // FETCH PHOTO FOR RELATED IMAGES
 
     useEffect(()=>{
-        dispatch(fetchPhoto('trending', 20 ))
+        dispatch(searchPhoto(currentImage))
     }, [])
 
     // FETCH FOR PREVIEW
@@ -36,17 +42,17 @@ const View = (props)=>{
     return(
         <React.Fragment>
             {
-                !photos ?
+                photos &&
                     <div className="view">
                     {
                         !fullView && 
                         <div className='grid apart view-detail'>
                             <div>
-                                <span>Children swimming in the waters</span>
+                                <span className='title'>{title}</span>
                                 <div className="no-wrap align-c grid author">
-                                    <h3>By Alhamad Mustapha</h3> in 
+                                    <h3>By {photographer}</h3> in 
                                     <span to={"/"} className="blue-t">Nature</span>
-                                    <i className="link material-icons">favorite_border</i>
+                                    <i className="link material-icons">{favStatus}</i>
                                 </div>
                             </div>
                             <button className="red">Download</button>
@@ -56,7 +62,7 @@ const View = (props)=>{
                             <div className='view-content'>
                                 <div className="img-cont">
                                     <i  onClick={toggleView} className="fullscreen material-icons">{icon}</i>
-                                    <img src={img} alt={""} />
+                                    <img src={portrait} alt={""} />
                                 </div>
                                 <p className="view-extra">
                                     Captured on Nikon 5FS Pro
@@ -69,8 +75,10 @@ const View = (props)=>{
                                 <Related withIntro data={photos} />
                             }
                         </div>
-                    </div>
-                : 
+                    </div> 
+            }
+            {
+                !photos && 
                 <Void error={message}/>
             }
         </React.Fragment>

@@ -1,13 +1,12 @@
 /* GALLERY CONTAINER */
 .gallery .wrapper{
-    column-count: 4;
+    column-count: 3;
     column-gap: 10;
     column-width: 200;
     padding: 20px 0px;
-    min-height: 500px;
 }
 .gallery .topbar{
-    z-index: 9999;
+    z-index: 99;
 }
 
 @media(max-width: 1000px){

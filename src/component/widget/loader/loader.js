@@ -4,7 +4,7 @@ import Logo from '../logo/logo';
 const Loader = ()=>{
         
     const styles = {
-        borderTop: "1px solid #eee",
+        // borderTop: "1px solid #eee",
         padding: "20px",
         marginTop: "100px",
         zIndex: 999,
