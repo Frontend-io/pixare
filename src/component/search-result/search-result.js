@@ -1,8 +1,11 @@
 import React from 'react'
-import Related from '../view-image/related-images/related-image';
+import './search-result.css'
+import Related from '../widget/related-images/related-image';
 
 
 const SearchResult = (props)=>{
+    const { state: { search: { result, isSearching } } } = props
+
     const styles = {
         wrapper: {
             results: 'column-count: 2',
@@ -20,12 +23,17 @@ const SearchResult = (props)=>{
 
 
     return(
-        <div style={styles.wrapper} className="searchResult">
-            <div style={styles.head}>
-                Search Results for
-            </div>
-            <Related {...props.state} />
-        </div>
+        <React.Fragment>
+            {
+                isSearching &&
+                <div style={styles.wrapper} className="searchResult">
+                    <div style={styles.head}>
+                        Search Results for
+                    </div>
+                    <Related data={result} />
+                </div>
+            }
+        </React.Fragment>
     )
 }
 

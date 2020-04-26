@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './search-form.css'
-import { searchingBegin, searchingEnd, searching } from '../../../container/redux/actions/search-action-creator';
+import { searchingBegin, searchingEnd, searching } from '../../../container/redux/actions/search-action/search-action-creator';
 
 
 const SearchForm = (props)=>{
@@ -26,7 +26,6 @@ const SearchForm = (props)=>{
         <form> 
             <div className=" relative no-wrap align-c grid field">
                 <input 
-                    onFocus = {searchHandler}
                     onChange={searchHandler}
                     value = {searchTerm}
                     autoComplete="off"

@@ -1,4 +1,4 @@
-import * as actions from "./action"
+import * as actions from "./photo-action"
 import axios from "axios";
 
 
@@ -18,10 +18,9 @@ export const download = (payload)=>{
 }
 
 
-export const removeFav = (payload)=>{
+export const emptyFav = ()=>{
     return{
-        type: actions.REMOVE_FAV,
-        payload
+        type: actions.EMPTY_FAV,
     }
 }
 
@@ -48,13 +47,14 @@ export const fetchPhotoFailure = (payload)=>{
 }
 
 
-export const fetchPhoto = (query)=>{
+export const fetchPhoto = (query, perPage)=>{
    return(dispatch)=>{
         dispatch(fetchPhotoBegin(query))
         // AXIOS
+        const initialPerPage = perPage ? perPage : 70 
         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
         const QUERY = query ? query : "nature"
-        const URL = `https://api.pexels.com/v1/search?query=${QUERY}&per_page=70&page=1`
+        const URL = `https://api.pexels.com/v1/search?query=${QUERY}&per_page=${initialPerPage}&page=1`
         axios
         .get(URL, {
             headers: {

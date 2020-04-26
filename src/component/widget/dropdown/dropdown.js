@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./dropdown.css"
 import PropTypes from 'prop-types';
 import randID from '../../../utilities/randID';
-import { fetchPhoto } from '../../../container/redux/actions/action-creator';
+import { fetchPhoto } from '../../../container/redux/actions/photo-action/photo-action-creator';
 
 
 const Dropdown = (props)=>{

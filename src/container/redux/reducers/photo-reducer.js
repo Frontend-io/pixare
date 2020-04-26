@@ -1,4 +1,5 @@
-import * as actions from "../actions/action"
+import * as actions from "../actions/photo-action/photo-action"
+import findFav from '../../../utilities/favoritePhotoFinder'
 
 const initialState = {
     loading: false,
@@ -9,6 +10,8 @@ const initialState = {
     favPreview : null,
     category: ''
 }
+
+
 
 const photoReducer = ( state = initialState, action )=>{
     const { type, payload } = action
@@ -39,13 +42,16 @@ const photoReducer = ( state = initialState, action )=>{
         case actions.ADD_FAV:
             return{
                 ...state,
-                favPhotos: [payload, ...state.favPhotos]
+                favPhotos: !findFav(state.favPhotos, payload) ? 
+                    [ payload, ...state.favPhotos ] :
+                    state.favPhotos.filter( p => payload !== p )
+
+                            
             }
-        case actions.REMOVE_FAV:
+        case actions.EMPTY_FAV:
             return{
                 ...state,
-                favPhotos: 
-                    state.favPhotos.filter( p => payload !== p )
+                favPhotos: []
             }
         case actions.DOWNLOAD:
             return{

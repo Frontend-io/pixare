@@ -1,4 +1,4 @@
-import * as actions from "../actions/search-action"
+import * as actions from "../actions/search-action/search-action"
 
 const initialState = {
     isSearching: false,
@@ -15,7 +15,7 @@ const SearchReducer = ( state = initialState, action )=>{
             return{
                 ...state,
                 isSearching: true,
-                message: ''
+                message: '',
             }
         case actions.DONE_SEARCHING:
             return{

@@ -1,7 +1,7 @@
 
 export const ADD_FAV = "ADD_FAV"
 
-export const REMOVE_FAV = "REMOVE_FAV"
+export const EMPTY_FAV = "EMPTY_FAV"
 
 export const DOWNLOAD = "DOWNLOAD"
 

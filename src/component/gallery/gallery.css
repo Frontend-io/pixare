@@ -6,6 +6,9 @@
     padding: 20px 0px;
     min-height: 500px;
 }
+.gallery .topbar{
+    z-index: 9999;
+}
 
 @media(max-width: 1000px){
     /* GALLERY CONTAINER */
@@ -25,6 +28,7 @@
         padding: 10px 20px
     }
 }
+
 @media(max-width: 500px){
     /* GALLERY CONTAINER */
     .gallery .wrapper{

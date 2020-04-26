@@ -1,54 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { addFav } from '../../../container/redux/actions/photo-action/photo-action-creator';
+import findFav from '../../../utilities/favoritePhotoFinder';
 
 
 const Photo = (props)=>{
-    const user = "https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/01/15/11/rexfeatures-5885988bd.jpg"
+    const { dispatch, data: { id, photographer, url, height, src:{portrait} }, index, state: { favPhotos } } = props
+    const title = url.split("/")[4].split('-').join(' ')
+      // SIMULATE MANSORY LAYOUT BY VARYING HEIGHT
+    const resize = index % 2 === 0
+    const currentImage = props.data
+
+    const isFav = findFav(favPhotos,currentImage)
     const styles = {
         wrapper:{
             marginBottom: 15,
-            // border: "1px solid #eee",
             background: "#ddd",
             maxWidth: "450px",
         },
         head:{
-            color: "#222"
+            color: "#fff"
         },
         image: {
             objectFit: "cover",
             width: '100%',
             marginBottom: "-5px",
-            height: props.height ? props.height : ' auto'
+            // VARY HEIGHT TO SIMULATE MANSORY LAYOUT
+            height:  height >= 4000 ? height/12 : height/6
         }
 
     }
-    const { author, id, image, liked } = props
+    
     const [ fav, setFav ] = useState(false)
-    const addFav = ()=>{
+    const queueFav = ()=>{
         fav ? setFav(false) : setFav(true)
+        // Add to favorite photos 
+        dispatch(addFav(currentImage))
     }
+    
+    
 
-    const icon = fav ? "favorite" : "favorite_border"
-    const favClass = fav ? "favorite" : ""
+    const icon = fav || isFav ? "favorite" : "favorite_border"
+    const favClass = fav || isFav ? "favorite" : ""
     
 
 
 
     return(
-        <Link to={`view/${id} `}>
-            <div style={styles.wrapper} className="photo">
-                {/* <div style={styles.head} className="no-wrap white padded-10 align-c grid apart photo-head">
-                    <div className="no-wrap align-c grid author">
-                        <img src={user} alt="image" height="30" width="30" style={{borderRadius: 100}} />    
-                        <p>{author}</p>  
-                    </div>
-                    <i onClick={addFav} className={`link material-icons ${favClass}`} >{icon}</i>
-                </div> */}
-                <img src={image} alt='image' style={styles.image}/>
+       
+            <div style={styles.wrapper} className="relative photo">
+                <div style={styles.head} className="no-wrap white padded-10 align-c grid apart photo-head">
+                    <p>{photographer}</p>
+                    <i title={isFav ? 'Remove from Bucket' : 'Add to bucket'} onClick={queueFav} className={`link material-icons ${favClass}`} >{icon}</i>
+                </div>
+                <Link to={`view/${id} `}>
+                    <img src={portrait} alt={photographer} style={styles.image}/>
+                </Link>
             </div>
-        </Link>
     )
 } 
 
 
-export default Photo
+
+const mapStateToProps = state =>{
+    return{
+        state: state.photo
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return{
+        dispatch: (action)=>{
+            dispatch(action)
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Photo)

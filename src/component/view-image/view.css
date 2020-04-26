@@ -4,7 +4,7 @@
 .view .view-detail{
     padding: 10px 5px;
     position: sticky;
-    top: 45px;
+    top: 0px;
     border-radius: 5px 5px 0px 0px;
     background: #fff;
     margin-bottom: 10px !important;
@@ -59,15 +59,16 @@
 @media(max-width: 600px){
     /* TOP BAR DETAILS */
     .view .view-detail{
-        padding: 10px 5px;
-        position: relative;
-        top: 0px;
+        padding: 5px 5px;
+        /* position: relative;
+        top: 0px; */
     }
     .view .view-detail{
         font-size: 14px;
     }
     .view .view-detail button{
         width: 100%;
+        margin-top: -8px;
     }
 
     /* CONTENTS */

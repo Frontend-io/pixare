@@ -3,13 +3,12 @@ import './home.css'
 import { connect } from 'react-redux'
 import Landing from '../landing/landing';
 import Gallery from '../gallery/gallery';
-import { fetchPhoto } from '../../container/redux/actions/action-creator';
+import { fetchPhoto } from '../../container/redux/actions/photo-action/photo-action-creator';
 import SearchResult from '../search-result/search-result';
 
 
 const Home = (props)=>{
-    const { dispatch, state: {search : { isSearching} } } = props
-
+    const { dispatch, state:{ photo: { photos } } } = props
     useEffect(()=>{
         dispatch(fetchPhoto('Trending'))
     }, [])
@@ -17,11 +16,10 @@ const Home = (props)=>{
     
     return(
        <React.Fragment>
-            <Landing {...props} />
-            {
-                isSearching &&
-                <SearchResult {...props} />
+            {   photos &&
+                <Landing {...props} />
             }
+            <SearchResult {...props} />
             <Gallery {...props} />
        </React.Fragment>
     )
