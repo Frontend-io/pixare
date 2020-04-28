@@ -25,7 +25,7 @@ export const Void = (props)=>{
            }
            {
                empty && <p>You have not added any photos to your bucket! <br />
-               <Link className="blue-t" to={'/home'}>Start adding...</Link></p>
+               <Link className="blue-t" to={'/'}>Start adding...</Link></p>
            }
             {
                 !empty && <p>Sorry we couldn't load your content, please try again!</p>

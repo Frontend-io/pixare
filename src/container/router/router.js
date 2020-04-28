@@ -9,11 +9,11 @@ import { ProtectedRoute } from './protectedRoute';
 const RouterMain = ()=>(
     <>
         <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route exact path="/home" component={ Home } />
+            <Route exact path="/pixare" component={ Home } />
             <Route exact path="/view/:id" component={ View } />
             <ProtectedRoute  exact path="/collections" component={ Collections } />
-            <Redirect from="*" exact to="/" component={ Home } />
+            <Redirect from="*" exact to="/pixare" component={ Home } />
+            <Redirect from="/" exact to="/pixare" component={ Home } />
         </Switch>
     </>
 )
