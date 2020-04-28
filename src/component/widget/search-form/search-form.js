@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './search-form.css'
-import { searchingBegin, searchingEnd, searching } from '../../../container/redux/actions/search-action/search-action-creator';
+import { searchingEnd, searching } from '../../../container/redux/actions/search-action/search-action-creator';
 
 
 const SearchForm = (props)=>{
@@ -11,19 +11,17 @@ const SearchForm = (props)=>{
     const searchHandler = (e)=>{
         setSearchTerm(e.target.value)
     }
+    const beginSearch = (e)=>{
+        e.preventDefault()
+        dispatch(searching(searchTerm, 20))
+        setSearchTerm('')
+    }
 
-    useEffect(()=>{
-        searchTerm.length > 0 ?
-            dispatch(searching(searchTerm, 10))
-        :
-            dispatch(searchingEnd())
-    }, [searchTerm])
-    
 
 
 
     return(
-        <form> 
+        <form onSubmit={beginSearch}> 
             <div className=" relative no-wrap align-c grid field">
                 <input 
                     onChange={searchHandler}
@@ -33,7 +31,7 @@ const SearchForm = (props)=>{
                     placeholder="What are you looking for?" 
                     className="form-fix" 
                 />
-                <i className='grey-t absolute material-icons'>search</i>
+                <i type='submit' className='grey-t absolute material-icons'>search</i>
             </div>
         </form>
     )

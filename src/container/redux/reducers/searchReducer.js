@@ -3,8 +3,9 @@ import * as actions from "../actions/search-action/search-action"
 const initialState = {
     isSearching: false,
     message: '',
-    result: [],
-    pageNum: ''
+    result: null,
+    pageNum: '',
+    searchTerm: ''
 }
 
 const SearchReducer = ( state = initialState, action )=>{
@@ -16,6 +17,7 @@ const SearchReducer = ( state = initialState, action )=>{
                 ...state,
                 isSearching: true,
                 message: '',
+                searchTerm: payload
             }
         case actions.DONE_SEARCHING:
             return{
@@ -26,16 +28,16 @@ const SearchReducer = ( state = initialState, action )=>{
         case actions.SEARCH_SUCCESS:
                 return{
                     ...state,
-                    isSearching: false,
+                    isSearching: true,
                     message: '',
-                    result: payload,
+                    result: payload.photos,
                 }
         case actions.SEARCH_FAILURE:
                 return{
                     ...state,
-                    isSearching: false,
+                    isSearching: true,
                     message: payload,
-                    result: [],
+                    result: null,
                 }
         case actions.NEXT_PAGE:
             return{

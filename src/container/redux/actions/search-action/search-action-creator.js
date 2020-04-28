@@ -3,9 +3,10 @@ import axios from 'axios'
 
 
 
-export const searchingBegin = ()=>{
+export const searchingBegin = (payload)=>{
     return{
-        type: actions.IS_SEARCHING
+        type: actions.IS_SEARCHING,
+        payload
     }
 }
 
@@ -33,7 +34,7 @@ export const searchFailure = (payload)=>{
 
 export const searching = (query, perPage)=>{
     return(dispatch)=>{
-         dispatch(searchingBegin())
+         dispatch(searchingBegin(query))
 
          // AXIOS
         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
@@ -46,12 +47,10 @@ export const searching = (query, perPage)=>{
         })
          .then(res => {
              const data = res.data
-             console.log(data)
              dispatch(searchSuccess(data))
          })
          .catch(err =>{
              const error = err.message
-             console.log(err.message)
              dispatch(searchFailure(error))
          })
     }

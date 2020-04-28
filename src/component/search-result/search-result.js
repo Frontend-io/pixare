@@ -1,10 +1,11 @@
 import React from 'react'
 import './search-result.css'
 import Related from '../widget/related-images/related-image';
+import { searchingEnd } from '../../container/redux/actions/search-action/search-action-creator';
 
 
 const SearchResult = (props)=>{
-    const { state: { search: { result, isSearching } } } = props
+    const { dispatch, state: { search: { result, searchTerm, isSearching } } } = props
 
     const styles = {
         wrapper: {
@@ -20,18 +21,28 @@ const SearchResult = (props)=>{
             color: '#222'
         }
     }
-
+    const handleClick = ()=>{
+        dispatch(searchingEnd())
+    }
 
     return(
         <React.Fragment>
             {
-                isSearching &&
+               result && isSearching ?
                 <div style={styles.wrapper} className="searchResult">
-                    <div style={styles.head}>
-                        Search Results for
-                    </div>
-                    <Related data={result} />
+                    {
+                        isSearching && result.length &&
+                        <div style={styles.head}>
+                            Search Results for <b>{searchTerm.toUpperCase()}</b> | <span onClick={handleClick} className='link red-t'>Close Search</span>
+                        </div>
+                    }
+                    {
+                        isSearching ? <Related data={result} /> 
+                        :
+                        isSearching && result.length && <h3 style={{minHeight: 100}} className='centered-text'>Sorry, your search didn't return any match</h3>
+                    }
                 </div>
+                : null
             }
         </React.Fragment>
     )

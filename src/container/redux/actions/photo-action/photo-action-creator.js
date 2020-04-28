@@ -51,12 +51,13 @@ export const fetchPhoto = (query, perPage)=>{
    return(dispatch)=>{
         dispatch(fetchPhotoBegin(query))
         // AXIOS
-        const initialPerPage = perPage ? perPage : 70 
+        const initialPerPage = perPage ? perPage : 80 
         const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
         const QUERY = query ? query : "nature"
         const URL = `https://api.pexels.com/v1/search?query=${QUERY}&per_page=${initialPerPage}&page=1`
+        const CURATED = `https://api.pexels.com/v1/curated?per_page=${initialPerPage}&page=1`
         axios
-        .get(URL, {
+        .get( query ? URL : CURATED, {
             headers: {
                 'Authorization': `${KEY}`
             }
@@ -114,8 +115,10 @@ export const findMatch = (id)=>{
             dispatch(findMatchSuccess(data))
          })
          .catch(err =>{
-            const error = err.message
-            dispatch(findMatchFailure(error))
+             if(err.response){
+                const { status } = err.response.data
+                dispatch(findMatchFailure(status))
+             }
          })
     }
  }

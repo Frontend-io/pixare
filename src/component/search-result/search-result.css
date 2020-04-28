@@ -1,3 +1,15 @@
-.related-content{
-    column-count: 3;
+.searchResult .related-content{
+    column-count: 4;
+}
+
+@media(max-width: 1000px){
+    .searchResult .related-content{
+        column-count: 3;
+    }
+}
+
+@media(max-width: 760px){
+    .searchResult .related-content{
+        column-count: 2;
+    }
 }

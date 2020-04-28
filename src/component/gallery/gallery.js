@@ -8,7 +8,7 @@ import Loader from '../widget/loader/loader';
 
 
 const Topbar = (props)=>{
-   
+
     const { state: { photo : {category} } } = props
     const wrapper = {
         borderBottom: "1px solid #eee",
@@ -16,7 +16,8 @@ const Topbar = (props)=>{
         top: 0, 
         color: "#555",
         background: "#fff",
-        fontSize: "1.5em"
+        fontSize: "1.5em",
+        transition: '.3s',
     }
 
     const categories = [
@@ -24,13 +25,13 @@ const Topbar = (props)=>{
         { title: 'Nature', value: 'nature' },
         { title: 'Education', value: 'education' },
         { title: 'Health', value: 'health' },
-        { title: 'Artificial Intelligence', value: 'artificail intelligence' },
+        { title: 'AI', value: 'artificail intelligence' },
         { title: 'Football', value: 'football' },
         { title: 'Wild', value: 'wild' },
         { title: 'Science', value: 'science' },
         { title: 'Sport', value: 'sport' },
         { title: 'Adult', value: 'adult' },
-        { title: 'Animations', value: 'animation' },
+        { title: 'Animations', value: 'animals' },
         { title: 'Military', value: 'military' },
         { title: 'Defense', value: 'defence' },
         { title: 'Religion', value: 'religion' },
@@ -51,7 +52,7 @@ const Topbar = (props)=>{
 
 
 const Gallery = (props)=>{
-   const { state: { photo: { loading, photos, message } } } = props
+   const { state: { photo: { loading, photos, message }, search: {isSearching} } } = props
       
    
    
@@ -62,7 +63,7 @@ const Gallery = (props)=>{
                 {
                     photos && loading === false &&
                     <div className="container">
-                        <div className='wrapper'>
+                        <div style={{ filter: isSearching ? 'blur(5px)' : null}} className='wrapper'>
                             {
                                 photos.map( (photo, index) =>{
                                     return(
