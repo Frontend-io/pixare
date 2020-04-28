@@ -5,7 +5,7 @@ const parseTitle = (rawTitle)=>{
 
         for(let i in piece){
             let word = piece[i]  
-            if( word % 2 == 0 ||  word % 2 == 1 ){
+            if( word % 2 === 0 ||  word % 2 === 1 ){
             let index = piece.indexOf(word)
             delete piece[index]
             }

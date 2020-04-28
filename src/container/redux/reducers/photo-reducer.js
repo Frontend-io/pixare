@@ -7,8 +7,10 @@ const initialState = {
     photos: null,
     favPhotos: [],
     downloaded: [],
-    favPreview : null,
-    category: ''
+    // DROPDOWN CATEGORY
+    category: '',
+    // PHOTO MATCH IN VIEW
+    favPreview : null, 
 }
 
 
@@ -61,10 +63,27 @@ const photoReducer = ( state = initialState, action )=>{
                 ...state,
                 favPreview: payload
             }
-        case actions.SEARCH_FOUND:
+
+
+        case actions.FIND_MATCH_BEGIN:
             return{
                 ...state,
+                loading: true,
+                message: ''
+            }
+        case actions.FIND_MATCH_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                message: '',
                 favPreview: payload
+            }
+        case actions.FIND_MATCH_FAILURE:
+            return{
+                ...state,
+                loading: false,
+                message: payload,
+                favPreview: null
             }
 
         default: 

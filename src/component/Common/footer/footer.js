@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import "./footer.css"
 import { withRouter } from "react-router-dom"
 import { Logo } from '../../widget/logo/logo';
-import Loader from '../../widget/loader/loader';
 
 
 const Footer = ( props )=>{
-    const { location:{pathname}, state: {photo : {photos, loading }} } = props
+    const { location:{pathname}, state: {photo : {photos }} } = props
     const route = pathname.split('/')[1]
     const style={
        themed: {
@@ -36,24 +35,6 @@ const Footer = ( props )=>{
                         <small>Powered by <b>Pexels</b></small> 
                     </div>
                 </footer>
-
-            //   <React.Fragment>
-            //        {
-            //             // route === "home" ?
-            //             //     loading ?
-            //             //         <Loader />
-            //             //     :
-            //             //     photos !== null && 
-            //             //     <footer style={style.themed} className={`grid footer ${extraClass}`} >
-            //             //         <div>
-            //             //             <Logo black />
-            //             //             <small>Powered by <b>Pexels</b></small> 
-            //             //         </div>
-            //             //     </footer>
-            //             // : 
-                        
-            //         }
-            //   </React.Fragment>
            }
        </React.Fragment>
     )

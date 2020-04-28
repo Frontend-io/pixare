@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import "./view.css"
 import Void from '../widget/void-content/void';
-import { fetchPhoto, searchPhoto } from '../../container/redux/actions/photo-action/photo-action-creator';
+import { findMatch, addFav } from '../../container/redux/actions/photo-action/photo-action-creator';
 import Related from '../widget/related-images/related-image';
 import parseTitle from '../../utilities/parseTitle';
-import findFav from '../../utilities/favoritePhotoFinder';
+import Loader from '../widget/loader/loader';
 
 
 
 const View = (props)=>{
-    const { dispatch, state: { photo: { message, photos, favPhotos, favPreview } }, match: {params : {id :currentImage }} } = props
+    const { dispatch, state: { photo: { message, loading, photos, favPhotos, favPreview } }, match: {params : {id :currentImage }} } = props
     const { photographer, url, src } = favPreview || {}
     const { portrait } = src || {}
-    const isFav = findFav(favPhotos, favPreview)
+    
     
     const title = parseTitle(url)
     const [ fullView, setFullView ] = useState(false)
@@ -24,16 +24,37 @@ const View = (props)=>{
     }
     const view = fullView ? "fullscreen" : "";
     const icon = fullView ? "fullscreen_exit" : "fullscreen"
-    const favStatus = !isFav ? 'red-t favorite' : 'favorite_border'
-    console.log(!isFav)
+    const setIcon = ()=>{
+
+        for( let i in favPhotos ){
+            let index = favPhotos[i]
+            if(parseInt(index.id) === parseInt(currentImage)){
+                return true
+            }else{
+            return false
+            }
+            
+        }
+    }
+    var favStatus = setIcon() ? 'favorite' : 'favorite_border'
+    useState(()=>{
+        favStatus = setIcon() ? 'favorite' : 'favorite_border'
+    }, [favPhotos])
+
+  
 
 
 
     // FETCH PHOTO FOR RELATED IMAGES
 
     useEffect(()=>{
-        dispatch(searchPhoto(currentImage))
-    }, [])
+        dispatch(findMatch(currentImage))
+    }, [currentImage, dispatch])
+
+    const handleEvent = ()=>{
+        dispatch(addFav(favPreview))
+    }
+
 
     // FETCH FOR PREVIEW
     
@@ -42,7 +63,7 @@ const View = (props)=>{
     return(
         <React.Fragment>
             {
-                photos &&
+                favPreview && !loading  && 
                     <div className="view">
                     {
                         !fullView && 
@@ -52,7 +73,7 @@ const View = (props)=>{
                                 <div className="no-wrap align-c grid author">
                                     <h3>By {photographer}</h3> in 
                                     <span to={"/"} className="blue-t">Nature</span>
-                                    <i className="link material-icons">{favStatus}</i>
+                                    <i onClick={handleEvent} style={{color: setIcon() ? 'red' : null}} className="link material-icons">{favStatus}</i>
                                 </div>
                             </div>
                             <button className="red">Download</button>
@@ -78,7 +99,10 @@ const View = (props)=>{
                     </div> 
             }
             {
-                !photos && 
+                loading && <Loader />
+            }
+            {
+                !favPreview && !loading && 
                 <Void error={message}/>
             }
         </React.Fragment>

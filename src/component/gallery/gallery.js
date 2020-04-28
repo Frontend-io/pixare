@@ -22,9 +22,21 @@ const Topbar = (props)=>{
     const categories = [
         { title: 'Trending', value: 'trending' },
         { title: 'Nature', value: 'nature' },
-        { title: 'Artificial Intelligence', value: 'ai' },
+        { title: 'Education', value: 'education' },
+        { title: 'Health', value: 'health' },
+        { title: 'Artificial Intelligence', value: 'artificail intelligence' },
+        { title: 'Football', value: 'football' },
+        { title: 'Wild', value: 'wild' },
         { title: 'Science', value: 'science' },
-        { title: 'Sport', value: 'sport' }
+        { title: 'Sport', value: 'sport' },
+        { title: 'Adult', value: 'adult' },
+        { title: 'Animations', value: 'animation' },
+        { title: 'Military', value: 'military' },
+        { title: 'Defense', value: 'defence' },
+        { title: 'Religion', value: 'religion' },
+        { title: 'Music', value: 'music' },
+        { title: 'Business', value: 'business' },
+        
     ]
 
 

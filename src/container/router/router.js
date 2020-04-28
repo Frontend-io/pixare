@@ -7,16 +7,15 @@ import { ProtectedRoute } from './protectedRoute';
 
 
 const RouterMain = ()=>(
-    <React.Fragment>
-         <Switch>
+    <>
+        <Switch>
             <Route exact path="/" component={ Home } />
             <Route exact path="/home" component={ Home } />
-            <Route  path="/view/:id" component={ View } />
+            <Route exact path="/view/:id" component={ View } />
             <ProtectedRoute  exact path="/collections" component={ Collections } />
-            <Redirect from="/view" exact to="/" component={ Home } />
             <Redirect from="*" exact to="/" component={ Home } />
         </Switch>
-    </React.Fragment>
+    </>
 )
 
 export default RouterMain

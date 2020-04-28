@@ -11,7 +11,6 @@
     max-width: 95%;
     margin: 0px auto;
     z-index: 99;
-
 }
 .view .view-detail button{
     min-width: 130px;
@@ -51,6 +50,13 @@
 }
 .view .view-content .fullscreen:hover{
     color: #fff;
+}
+
+
+@media(max-width: 900px){
+    .view .view-content .related-content{
+        column-count: 2 !important
+    }
 }
 
 @media(max-width: 768px){

@@ -72,18 +72,34 @@ export const fetchPhoto = (query, perPage)=>{
    }
 }
 
-
-const searchFound = (payload)=>{
+// SEARCHING FOR PHOTO MATCH
+const findMatchBegin = ()=>{
     return{
-        type: actions.SEARCH_FOUND,
+        type: actions.FIND_MATCH_BEGIN
+    }
+}
+
+
+const findMatchSuccess = (payload)=>{
+    return{
+        type: actions.FIND_MATCH_SUCCESS,
         payload
     }
 }
 
 
-export const searchPhoto = (id)=>{
+const findMatchFailure = (payload)=>{
+    return{
+        type: actions.FIND_MATCH_FAILURE,
+        payload
+    }
+}
+
+
+export const findMatch = (id)=>{
 
     return(dispatch)=>{
+         dispatch(findMatchBegin())
 
          const KEY = "563492ad6f9170000100000160f67cb297a84d5b8cd4cab93fbb713f"
          const URL = `https://api.pexels.com/v1/photos/${id}`
@@ -95,11 +111,11 @@ export const searchPhoto = (id)=>{
          })
          .then(res => {
             const data = res.data
-            dispatch(searchFound(data))
+            dispatch(findMatchSuccess(data))
          })
          .catch(err =>{
             const error = err.message
-            console.log(error) 
+            dispatch(findMatchFailure(error))
          })
     }
  }

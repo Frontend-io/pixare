@@ -15,7 +15,6 @@
     background: #fff;
     position: absolute;
     min-width: 200px;
-    min-height: 0px;
     left: 0px;
     top: 60px;
     padding: 10px;
@@ -26,7 +25,9 @@
     z-index: 99;
     transition: all .3s;
     padding: 0px;
-    transform: rotateX(120deg)
+    transform: rotateX(120deg);
+    height: 250px;
+    overflow-y: auto
 }
 .drop-down.visible .content{
     visibility: visible;

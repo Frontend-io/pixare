@@ -30,6 +30,8 @@ const Dropdown = (props)=>{
         // DISPATCH AND FETCH NEW CATEGORY
         dispatch(fetchPhoto(value))
     }
+    // Dropdown icon
+    const icon = visible ? 'arrow_drop_up' : 'arrow_drop_down'
     
     
 
@@ -40,7 +42,7 @@ const Dropdown = (props)=>{
                 <span>{category}</span> 
                 {
                     props.type === 'list' &&
-                    <i className="material-icons">unfold_more</i>
+                    <i className="material-icons">{icon}</i>
                 }
             </button>
             <div className={`content ${type === "list" ? "list" : "paragraph"}`}>

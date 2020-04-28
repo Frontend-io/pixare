@@ -12,7 +12,6 @@ export const Void = (props)=>{
         paddingTop: 100,
         minHeight: '280px',
         display: 'flex',
-        minHeight: ' 55vh'
     }
 
     return(

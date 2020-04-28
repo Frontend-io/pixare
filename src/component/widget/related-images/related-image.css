@@ -19,6 +19,9 @@
 .view .related .related-head span{
     white-space: nowrap;
 }
+.view .related .related-content{
+    column-count: 3;
+}
 .view .related .related-content .photo{
     max-width: 280px !important;
 }
@@ -40,6 +43,9 @@
 @media(max-width: 1300px){
     .view .related {
         width: 50%
+    }
+    .view .related .related-content{
+        column-count: 2;
     }
 }
 
@@ -77,4 +83,7 @@
     .view .related .related-content .photo .author p{
         font-size: 16px;
     }
+    /* .view .related .related-content{
+        column-count: 3;
+    } */
 }

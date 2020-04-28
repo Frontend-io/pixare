@@ -9,10 +9,9 @@ import parseTitle from '../../../utilities/parseTitle';
 const Photo = (props)=>{
     const { dispatch, data: { id, photographer, url, height, src:{portrait} }, state: { favPhotos } } = props
     const title = parseTitle(url) || null
-    
     const currentImage = props.data
+    const isFav = findFav(favPhotos, currentImage)
 
-    const isFav = findFav(favPhotos,currentImage)
     const styles = {
         wrapper:{
             marginBottom: 15,
@@ -33,15 +32,12 @@ const Photo = (props)=>{
         }
 
     }
-    
     const [ fav, setFav ] = useState(false)
     const queueFav = ()=>{
         fav ? setFav(false) : setFav(true)
         // Add to favorite photos 
         dispatch(addFav(currentImage))
-    }
-    
-    
+    }   
 
     const icon = fav || isFav ? "favorite" : "favorite_border"
     const favClass = fav || isFav ? "favorite" : ""
@@ -51,15 +47,15 @@ const Photo = (props)=>{
 
     return(
        
-            <div title={title} style={styles.wrapper} className="relative photo">
-                <div style={styles.head} className="no-wrap white padded-10 align-c grid apart photo-head">
-                    <p>{photographer}</p>
-                    <i title={isFav ? 'Remove from Bucket' : 'Add to bucket'} onClick={queueFav} className={`link material-icons ${favClass}`} >{icon}</i>
-                </div>
-                <Link to={`view/${id} `}>
-                    <img src={portrait} alt={photographer} style={styles.image}/>
-                </Link>
+        <div title={title} style={styles.wrapper} className="relative photo">
+            <div style={styles.head} className="no-wrap white padded-10 align-c grid apart photo-head">
+                <p>{photographer}</p>
+                <i title={isFav ? 'Remove from Bucket' : 'Add to bucket'} onClick={queueFav} className={`link material-icons ${favClass}`} >{icon}</i>
             </div>
+            <Link to={`/view/${id} `}>
+                <img src={portrait} alt={photographer} style={styles.image}/>
+            </Link>
+        </div>
     )
 } 
 
