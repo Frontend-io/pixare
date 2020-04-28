@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/pixare/static/css/main.86021c81.chunk.css",
-    "main.js": "/pixare/static/js/main.8ecd3be8.chunk.js",
-    "main.js.map": "/pixare/static/js/main.8ecd3be8.chunk.js.map",
+    "main.css": "/pixare/static/css/main.ae7bf9f0.chunk.css",
+    "main.js": "/pixare/static/js/main.8d70f2af.chunk.js",
+    "main.js.map": "/pixare/static/js/main.8d70f2af.chunk.js.map",
     "runtime-main.js": "/pixare/static/js/runtime-main.b9899476.js",
     "runtime-main.js.map": "/pixare/static/js/runtime-main.b9899476.js.map",
     "static/js/2.91f65f45.chunk.js": "/pixare/static/js/2.91f65f45.chunk.js",
     "static/js/2.91f65f45.chunk.js.map": "/pixare/static/js/2.91f65f45.chunk.js.map",
     "index.html": "/pixare/index.html",
-    "precache-manifest.28c276c86b114916d8e30b59a538f513.js": "/pixare/precache-manifest.28c276c86b114916d8e30b59a538f513.js",
+    "precache-manifest.ba5362662966991be3cdb04c91c2388e.js": "/pixare/precache-manifest.ba5362662966991be3cdb04c91c2388e.js",
     "service-worker.js": "/pixare/service-worker.js",
-    "static/css/main.86021c81.chunk.css.map": "/pixare/static/css/main.86021c81.chunk.css.map",
+    "static/css/main.ae7bf9f0.chunk.css.map": "/pixare/static/css/main.ae7bf9f0.chunk.css.map",
     "static/js/2.91f65f45.chunk.js.LICENSE.txt": "/pixare/static/js/2.91f65f45.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b9899476.js",
     "static/js/2.91f65f45.chunk.js",
-    "static/css/main.86021c81.chunk.css",
-    "static/js/main.8ecd3be8.chunk.js"
+    "static/css/main.ae7bf9f0.chunk.css",
+    "static/js/main.8d70f2af.chunk.js"
   ]
 }
